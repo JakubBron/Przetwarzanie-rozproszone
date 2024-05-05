@@ -24,14 +24,14 @@ int main(int argc, char** argv)
             fprintf(stderr, "read");
             exit(EXIT_FAILURE);
         } 
-        if (num_bytes != 0) 
+        else if (num_bytes == 0) 
         {
-            printf("Received: %s\n", buffer);
-            if(strcmp(buffer, "0000") == 0)
-            {
-                break;
-            }
+            printf("End of file reached\n");
+            break;
         } 
+        else {
+            printf("Received: %s\n", buffer);
+        }
     }
     close(f);
     unlink(namedPipe);
